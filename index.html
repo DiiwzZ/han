@@ -33,6 +33,8 @@
             background: linear-gradient(45deg, #1976D2, #2196F3);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            display: inline-block;
+            vertical-align: baseline;
         }
         .content {
             background: rgba(255, 255, 255, 0.9);
@@ -178,26 +180,113 @@
             background: transparent;
             box-shadow: none;
         }
+        
+        .screenshot-container {
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .tooltip {
+            visibility: hidden;
+            position: absolute;
+            bottom: 120%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.9);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            width: 300px;
+            font-size: 14px;
+            line-height: 1.5;
+            z-index: 100;
+            opacity: 0;
+            transition: opacity 0.3s, visibility 0.3s;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+        }
+        
+        .tooltip::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -10px;
+            border-width: 10px;
+            border-style: solid;
+            border-color: rgba(0, 0, 0, 0.9) transparent transparent transparent;
+        }
+        
+        .screenshot-container:hover .tooltip {
+            visibility: visible;
+            opacity: 1;
+        }
+        
+        .icon-title {
+            display: flex;
+            align-items: baseline;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 1em;
+        }
+        
+        .icon-title i {
+            font-size: 0.8em;
+            background: linear-gradient(45deg, #1976D2, #2196F3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-top: 0.5em;
+        }
+        
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .feature-list li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            margin: 10px 0;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 8px;
+            transition: transform 0.3s;
+        }
+        
+        .feature-list li:hover {
+            transform: translateX(10px);
+        }
+        
+        .feature-list i {
+            font-size: 1.2em;
+            color: #2196F3;
+        }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <!-- สไลด์ที่ 1: หน้าปก -->
     <div class="slide active">
-        <div class="title">Project Chatbot</div>
+        <div class="icon-title">
+            <div class="title">
+                <i class="fas fa-robot"></i>
+                Project Chatbot
+            </div>
+        </div>
         <div class="content">
-            <h2>การพัฒนา Chatbot ด้วย RAG (Retrieval-Augmented Generation)</h2>
+            <h2><i class="fas fa-gamepad"></i> การพัฒนา Chatbot ด้วย RAG</h2>
             <div class="developers">
-                <h3>👥 ผู้พัฒนา</h3>
+                <h3><i class="fas fa-users"></i> ผู้พัฒนา</h3>
                 <ul style="list-style: none; padding: 0;">
                     <li>
-                        <a href="https://github.com/Tanasphon" target="_blank" style="text-decoration: none;">
-                            🧑‍💻 Tanasphon - GitHub (@Tanasphon)
+                        <a href="https://github.com/Tanasphon" target="_blank">
+                            <i class="fab fa-github"></i> Tanasphon (@Tanasphon)
                         </a>
                     </li>
                     <li>
-                        <a href="https://github.com/J4YZwag" target="_blank" style="text-decoration: none;">
-                            🧑‍💻 Jeehan - GitHub (@J4YZwag)
+                        <a href="https://github.com/J4YZwag" target="_blank">
+                            <i class="fab fa-github"></i> Jeehan (@J4YZwag)
                         </a>
                     </li>
                 </ul>
@@ -207,20 +296,39 @@
 
     <!-- สไลด์ที่ 2: RAG คืออะไร -->
     <div class="slide">
-        <div class="title">หลักการของ RAG</div>
+        <div class="icon-title">
+            <div class="title">
+                <i class="fas fa-brain"></i>
+                RAG
+            </div>
+        </div>
         <div class="content">
-            <h3>Retrieval-Augmented Generation (RAG) คืออะไร?</h3>
-            <ul>
-                <li>เทคนิคการผสมผสานระหว่างการค้นคืนข้อมูล (Retrieval) และการสร้างคำตอบ (Generation)</li>
-                <li>ช่วยให้ AI สามารถเข้าถึงข้อมูลที่เป็นปัจจุบันและถูกต้อง</li>
-                <li>ลดปัญหา Hallucination ในการตอบคำถาม</li>
+            <h3><i class="fas fa-question-circle"></i> Retrieval-Augmented Generation คืออะไร?</h3>
+            <ul class="feature-list">
+                <li>
+                    <i class="fas fa-sync-alt"></i>
+                    เทคนิคการผสมผสานระหว่างการค้นคืนข้อมูล (Retrieval) และการสร้างคำตอบ (Generation)
+                </li>
+                <li>
+                    <i class="fas fa-database"></i>
+                    ช่วยให้ AI สามารถเข้าถึงข้อมูลที่เป็นปัจจุบันและถูกต้อง
+                </li>
+                <li>
+                    <i class="fas fa-shield-alt"></i>
+                    ลดปัญหา Hallucination ในการตอบคำถาม
+                </li>
             </ul>
         </div>
     </div>
 
     <!-- สไลด์ที่ 3: สถาปัตยกรรมระบบ -->
     <div class="slide">
-        <div class="title">สถาปัตยกรรมระบบ Chatbot</div>
+        <div class="icon-title">
+            <div class="title">
+                <i class="fas fa-project-diagram"></i>
+                Chatbot Architecture
+            </div>
+        </div>
         <div class="diagram">
             <svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid meet">
                 <!-- Gradients -->
@@ -304,37 +412,59 @@
 
     <!-- สไลด์ที่ 4: การทำงานของระบบ -->
     <div class="slide">
-        <div class="title">การทำงานของระบบ</div>
+        <div class="icon-title">
+            <div class="title">
+                <i class="fas fa-cogs"></i>
+                System Operations
+            </div>
+        </div>
         <div class="content">
-            <ol>
-                <li>รับคำถามจากผู้ใช้</li>
-                <li>ค้นหาข้อมูลที่เกี่ยวข้องจากฐานข้อมูล</li>
-                <li>ประมวลผลและสร้างคำตอบโดยใช้ RAG</li>
-                <li>ส่งคำตอบกลับไปยังผู้ใช้</li>
+            <ol class="feature-list">
+                <li><i class="fas fa-user-edit"></i> รับคำถามจากผู้ใช้</li>
+                <li><i class="fas fa-search"></i> ค้นหาข้อมูลที่เกี่ยวข้องจากฐานข้อมูล</li>
+                <li><i class="fas fa-brain"></i> ประมวลผลและสร้างคำตอบโดยใช้ RAG</li>
+                <li><i class="fas fa-reply"></i> ส่งคำตอบกลับไปยังผู้ใช้</li>
             </ol>
         </div>
     </div>
 
     <!-- เพิ่มสไลด์ใหม่หลังจากสไลด์ที่ 4 -->
     <div class="slide">
-        <div class="title">ตัวอย่างการทำงาน</div>
+        <div class="icon-title">
+            <div class="title">
+                <i class="fas fa-desktop"></i>
+                Example Operations
+            </div>
+        </div>
         <div class="content">
             <div class="screenshots-container">
                 <div class="screenshot-box">
-                    <img src="game-chatbot1.png" alt="หน้าแรกของ Chatbot" class="screenshot">
-                    <div class="screenshot-caption">หน้าแรกของ Chatbot - การทักทายผู้ใช้</div>
+                    <div class="screenshot-container">
+                        <img src="game-chatbot1.png" alt="หน้าแรกของ Chatbot" class="screenshot">
+                        <div class="tooltip">
+                            <strong>หน้าแรกของ Game Chatbot 🎮</strong><br>
+                            เมื่อผู้ใช้เข้าสู่ระบบ chatbot จะทักทายและแนะนำตัวเอง พร้อมอธิบายความสามารถในการให้ข้อมูลเกี่ยวกับเกม RPG ต่างๆ ผู้ใช้สามารถสอบถามข้อมูลเกี่ยวกับเกมที่สนใจได้ทันที
+                        </div>
+                        <div class="screenshot-caption">การทักทายผู้ใช้ครั้งแรก</div>
+                    </div>
                 </div>
                 <div class="screenshot-box">
-                    <img src="game-chatbot-chat.png" alt="การตอบคำถามของ Chatbot" class="screenshot">
-                    <div class="screenshot-caption">ตัวอย่างการตอบคำถามเกี่ยวกับเกม</div>
+                    <div class="screenshot-container">
+                        <img src="game-chatbot-chat.png" alt="การตอบคำถามของ Chatbot" class="screenshot">
+                        <div class="tooltip">
+                            <strong>ตัวอย่างการสนทนา 💬</strong><br>
+                            แสดงการโต้ตอบระหว่างผู้ใช้และ chatbot โดย chatbot สามารถให้ข้อมูลเกี่ยวกับเกม RPG ยอดนิยม เช่น The Witcher 3, Elden Ring, Cyberpunk 2077 และอื่นๆ พร้อมรายละเอียดแพลตฟอร์มที่รองรับ
+                        </div>
+                        <div class="screenshot-caption">ตัวอย่างการตอบคำถามเกี่ยวกับเกม</div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
     <div class="navigation">
-        <button onclick="previousSlide()">Previous</button>
-        <button onclick="nextSlide()">Next</button>
+        <button onclick="previousSlide()"><i class="fas fa-chevron-left"></i> Previous</button>
+        <button onclick="nextSlide()">Next <i class="fas fa-chevron-right"></i></button>
     </div>
 
     <script>
