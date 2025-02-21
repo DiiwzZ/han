@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Project Chatbot Presentation</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Kanit', sans-serif;
+        }
+        .slide {
+            width: 100vw;
+            height: 100vh;
+            display: none;
+            padding: 2em;
+            box-sizing: border-box;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+        .slide.active {
+            display: block;
+        }
+        .title {
+            font-size: 2.5em;
+            text-align: center;
+            margin-bottom: 1em;
+        }
+        .content {
+            font-size: 1.5em;
+            margin: 1em;
+        }
+        .diagram {
+            width: 80%;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .navigation {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            font-size: 1.2em;
+            cursor: pointer;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- สไลด์ที่ 1: หน้าปก -->
+    <div class="slide active">
+        <div class="title">Project Chatbot</div>
+        <div class="content">
+            <h2>การพัฒนา Chatbot ด้วย RAG (Retrieval-Augmented Generation)</h2>
+            <p>โดย [ชื่อผู้นำเสนอ]</p>
+        </div>
+    </div>
+
+    <!-- สไลด์ที่ 2: RAG คืออะไร -->
+    <div class="slide">
+        <div class="title">หลักการของ RAG</div>
+        <div class="content">
+            <h3>Retrieval-Augmented Generation (RAG) คืออะไร?</h3>
+            <ul>
+                <li>เทคนิคการผสมผสานระหว่างการค้นคืนข้อมูล (Retrieval) และการสร้างคำตอบ (Generation)</li>
+                <li>ช่วยให้ AI สามารถเข้าถึงข้อมูลที่เป็นปัจจุบันและถูกต้อง</li>
+                <li>ลดปัญหา Hallucination ในการตอบคำถาม</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- สไลด์ที่ 3: สถาปัตยกรรมระบบ -->
+    <div class="slide">
+        <div class="title">สถาปัตยกรรมระบบ Chatbot</div>
+        <div class="diagram">
+            <!-- ใส่รูป diagram ที่นี่ -->
+            <svg width="800" height="400">
+                <!-- ตัวอย่าง diagram แบบง่าย -->
+                <rect x="50" y="50" width="200" height="100" fill="#4CAF50" opacity="0.8"/>
+                <text x="150" y="100" text-anchor="middle" fill="white">User Interface</text>
+                
+                <rect x="300" y="50" width="200" height="100" fill="#2196F3" opacity="0.8"/>
+                <text x="400" y="100" text-anchor="middle" fill="white">RAG System</text>
+                
+                <rect x="550" y="50" width="200" height="100" fill="#9C27B0" opacity="0.8"/>
+                <text x="650" y="100" text-anchor="middle" fill="white">Database</text>
+                
+                <!-- เส้นเชื่อม -->
+                <line x1="250" y1="100" x2="300" y2="100" stroke="black" stroke-width="2"/>
+                <line x1="500" y1="100" x2="550" y2="100" stroke="black" stroke-width="2"/>
+            </svg>
+        </div>
+    </div>
+
+    <!-- สไลด์ที่ 4: การทำงานของระบบ -->
+    <div class="slide">
+        <div class="title">การทำงานของระบบ</div>
+        <div class="content">
+            <ol>
+                <li>รับคำถามจากผู้ใช้</li>
+                <li>ค้นหาข้อมูลที่เกี่ยวข้องจากฐานข้อมูล</li>
+                <li>ประมวลผลและสร้างคำตอบโดยใช้ RAG</li>
+                <li>ส่งคำตอบกลับไปยังผู้ใช้</li>
+            </ol>
+        </div>
+    </div>
+
+    <div class="navigation">
+        <button onclick="previousSlide()">Previous</button>
+        <button onclick="nextSlide()">Next</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + slides.length) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function previousSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight') nextSlide();
+            if (e.key === 'ArrowLeft') previousSlide();
+        });
+    </script>
+</body>
+</html> 
